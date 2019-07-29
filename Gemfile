@@ -72,3 +72,4 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'dotenv-rails'
 gem 'rmagick'
+gem "omniauth-rails_csrf_protection"
