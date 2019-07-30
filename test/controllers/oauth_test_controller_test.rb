@@ -1,9 +1,11 @@
-require 'test_helper'
+# frozen_string_literal: true
 
-class OauthTestControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get oauth_test_index_url
-    assert_response :success
-  end
+# require 'test_helper'
 
-end
+# class OauthTestControllerTest < ActionDispatch::IntegrationTest
+#   test "should get index" do
+#     get oauth_test_index_url
+#     assert_response :success
+#   end
+
+# end

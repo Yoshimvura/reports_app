@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :set_commentable
 
@@ -7,11 +9,9 @@ class CommentsController < ApplicationController
     @comment = Book.find(params[:id]).comments.new
   end
 
-  def new
-  end
+  def new; end
 
-  def show
-  end
+  def show; end
 
   def edit
     @comment = @commentable.comments.find(params[:id])
@@ -41,13 +41,14 @@ class CommentsController < ApplicationController
     end
   end
 
-private
+  private
+
   def comment_params
     params.require(:comment).permit(:commentable, :comment)
   end
 
   def set_commentable
-      resource, id = request.path.split('/')[1,2]
-      @commentable = resource.singularize.classify.constantize.find(id)
-    end
+    resource, id = request.path.split('/')[1, 2]
+    @commentable = resource.singularize.classify.constantize.find(id)
+  end
 end

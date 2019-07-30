@@ -1,9 +1,11 @@
-require 'test_helper'
+# frozen_string_literal: true
 
-class UsersControllerTest < ActionDispatch::IntegrationTest
-  test "should get show" do
-    get users_show_url
-    assert_response :success
-  end
+# require 'test_helper'
 
-end
+# class UsersControllerTest < ActionDispatch::IntegrationTest
+#   test "should get show" do
+#     get users_show_url
+#     assert_response :success
+#   end
+
+# end
