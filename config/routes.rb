@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'oauth_test/index'
+  get "oauth_test/index"
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    omniauth_callbacks: 'users/omniauth_callbacks'
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   resources :users, only: %i[show index]
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  root to: 'oauth_test#index'
+  root to: "oauth_test#index"
 
   resources :users do
     member do
