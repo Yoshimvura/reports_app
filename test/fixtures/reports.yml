@@ -5,3 +5,7 @@
 
 # two:
 #  memo: MyText
+
+content:
+  content: "レポート内容"
+  id: 1

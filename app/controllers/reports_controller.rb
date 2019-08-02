@@ -48,7 +48,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report }
+        format.html { redirect_to @report, notice: "Report was successfully updated." }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit }
@@ -62,20 +62,19 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url }
+      format.html { redirect_to reports_url, notice: "Report was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_report
+      @report = Report.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_report
-    @report = Report.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def report_params
-    params.require(:report).permit(:content)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def report_params
+      params.require(:report).permit(:content)
+    end
 end

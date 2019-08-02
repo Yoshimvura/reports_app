@@ -1,45 +1,53 @@
-# frozen_string_literal: true
+ # frozen_string_literal: true
 
-# require 'application_system_test_case'
+ require "application_system_test_case"
 
-# class ReportsTest < ApplicationSystemTestCase
-#   setup do
-#     @report = reports(:one)
-#   end
+ class ReportsTest < ApplicationSystemTestCase
+   include Warden::Test::Helpers
 
-#   test 'visiting the index' do
-#     visit reports_url
-#     assert_selector 'h1', text: 'Reports'
-#   end
+   setup do
+     Warden.test_mode!
+     @user = users(:john)
+     login_as(@user, scope: :user)
+     @report = reports(:content)
+   end
 
-#   test 'creating a Report' do
-#     visit reports_url
-#     click_on 'New Report'
+   test "visiting the index" do
+     visit reports_path
+     assert_equal("レポート内容", @report.content)
+   end
 
-#     fill_in 'Memo', with: @report.memo
-#     click_on 'Create Report'
+   test "creating a Report" do
+     visit new_report_path(@user)
 
-#     assert_text 'Report was successfully created'
-#     click_on 'Back'
-#   end
+     fill_in "Content", with: "レポートタイトル"
+     click_on "登録する"
 
-#   test 'updating a Report' do
-#     visit reports_url
-#     click_on 'Edit', match: :first
+     assert_text "Report was successfully created."
+   end
 
-#     fill_in 'Memo', with: @report.memo
-#     click_on 'Update Report'
+   test "updating a Report" do
+     visit reports_path
 
-#     assert_text 'Report was successfully updated'
-#     click_on 'Back'
-#   end
+     click_link "Edit"
 
-#   test 'destroying a Report' do
-#     visit reports_url
-#     page.accept_confirm do
-#       click_on 'Destroy', match: :first
-#     end
+     fill_in "Content", with: "レポートエディット"
+     click_on "更新する"
 
-#     assert_text 'Report was successfully destroyed'
-#   end
-# end
+     assert_text "Report was successfully updated."
+   end
+
+   test "destroying a Report" do
+     visit new_report_path(@user)
+
+     fill_in "Content", with: "レポートタイトル"
+     click_on "登録する"
+     click_link "Back"
+
+     page.accept_confirm do
+       click_on "Destroy", match: :first
+     end
+
+     assert_text "Report was successfully destroyed"
+   end
+ end

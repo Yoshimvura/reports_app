@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @image = if @user.avatar.attached?
-               @user.avatar.variant(resize: "100x100").processed
-             else
-               "azarashi.png"
-             end
+      @user.avatar.variant(resize: "100x100").processed
+    else
+      "azarashi.png"
+    end
   end
 
   def following
