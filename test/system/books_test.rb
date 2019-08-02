@@ -25,7 +25,7 @@ class BooksTest < ApplicationSystemTestCase
     fill_in "Memo", with: "メモの内容"
     click_on "登録する"
 
-    assert_text "Book was successfully created."
+    assert_text "ブック新規作成しました"
   end
 
   test "updating a Book" do
@@ -41,7 +41,7 @@ class BooksTest < ApplicationSystemTestCase
     fill_in "作品名", with: "タイトルエディット"
     click_on "更新する"
 
-    assert_text "Book was successfully updated."
+    assert_text "ブック更新しました"
   end
 
   test "destroying a Book" do
@@ -56,6 +56,6 @@ class BooksTest < ApplicationSystemTestCase
       click_link "Destroy", match: :first
     end
 
-    assert_text "Book was successfully destroyed."
+    assert_text "ブック削除しました"
   end
 end

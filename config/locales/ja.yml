@@ -1,4 +1,18 @@
 ja:
+  books:
+    create:
+      book created: ブック新規作成しました
+    update:
+      book updated: ブック更新しました
+    destroy:
+      book destroyed: ブック削除しました
+  reports:
+    create:
+      report created: レポート新規作成しました
+    update:
+      report updated: レポート更新しました
+    destroy:
+      report destroyed: レポート削除しました
   activerecord:
     models:
       book: 本

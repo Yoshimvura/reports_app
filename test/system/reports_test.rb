@@ -23,7 +23,7 @@
      fill_in "Content", with: "レポートタイトル"
      click_on "登録する"
 
-     assert_text "Report was successfully created."
+     assert_text "レポート新規作成しました"
    end
 
    test "updating a Report" do
@@ -34,7 +34,7 @@
      fill_in "Content", with: "レポートエディット"
      click_on "更新する"
 
-     assert_text "Report was successfully updated."
+     assert_text "レポート更新しました"
    end
 
    test "destroying a Report" do
@@ -48,6 +48,6 @@
        click_on "Destroy", match: :first
      end
 
-     assert_text "Report was successfully destroyed"
+     assert_text "レポート削除しました"
    end
  end
