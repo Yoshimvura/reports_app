@@ -2,11 +2,11 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
-
+  PER = 8
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    @reports = Report.page(params[:page]).per(PER)
   end
 
   # GET /reports/1

@@ -28,7 +28,6 @@
 
    test "updating a Report" do
      visit reports_path
-
      click_link "Edit"
 
      fill_in "Content", with: "レポートエディット"
