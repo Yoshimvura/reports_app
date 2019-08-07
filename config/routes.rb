@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  root to: "oauth_test#index"
+  root to: "oauth#index"
 
   resources :users do
     member do
