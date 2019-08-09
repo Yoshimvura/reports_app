@@ -22,11 +22,11 @@ h2
   .field
     = f.label :postcode
     br
-    = f.text_field :postcode, autofocus: true
+    = f.text_field :postcode,autofocus: true
   .field
     = f.label :address
     br
-    = f.text_field :address, autofocus: true
+    = f.text_field :address,autofocus: true
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     div
       | Currently waiting confirmation for: 
@@ -55,3 +55,4 @@ p
   | Unhappy? 
   = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
 = link_to "Back", :back
+

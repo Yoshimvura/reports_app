@@ -34,19 +34,22 @@ class User < ApplicationRecord
     SecureRandom.uuid
   end
 
-  def self.find_for_github_oauth(auth, _signed_in_resource = nil)
-    user = User.find_by(provider: auth.provider, uid: auth.uid)
-
-    user ||= User.new(provider: auth.provider,
-                      uid: auth.uid,
-                      name: auth.info.name,
-                      email: User.dummy_email(auth),
-                      password: Devise.friendly_token[0, 20])
-    user.save
-    user
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+        user.name = auth.info.name   # assuming the user model has a name
+        # If you are using confirmable and the provider(s) you use validate emails,
+        # uncomment the line below to skip the confirmation emails.
+        # user.skip_confirmation!
+      end
   end
 
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.github_data"] && session["devise.github_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
   end
 end
