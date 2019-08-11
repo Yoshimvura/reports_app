@@ -22,11 +22,11 @@ h2
   .field
     = f.label :postcode
     br
-    = f.text_field :postcode,autofocus: true
+    = f.text_field :postcode, autofocus: true,onKeyUp:"AjaxZip3.zip2addr(this,'','user[address]','user[address]');"
   .field
     = f.label :address
     br
-    = f.text_field :address,autofocus: true
+    = f.text_field :address, size:"60"
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     div
       | Currently waiting confirmation for: 
